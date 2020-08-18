@@ -41,7 +41,7 @@ pipeline{
                  remote.password = '111111'
                  remote.allowAnyHosts = true
                  sshCommand remote: remote, command: "if [ ! -d '/opt/app/spring-boot-jenkins2' ]; then mkdir -p /opt/app/spring-boot-jenkins2;fi"
-                 sshPut remote: remote, from: '/opt/app/spring-boot-jenkins/*', into: '/opt/app/spring-boot-jenkins'
+                 sshPut remote: remote, from: '/opt/app/spring-boot-jenkins', into: '/opt/app/spring-boot-jenkins',override: true
                  sshCommand remote: remote, command: "sh /opt/app/spring-boot-jenkins/start.sh"
             }
          }
