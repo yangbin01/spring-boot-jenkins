@@ -19,6 +19,7 @@ pipeline{
        steps{
           script{
               sh '''
+                rm /opt/app/spring-boot-jenkins/*.jar
                 cp ${WORKSPACE}/target/*.jar /opt/app/spring-boot-jenkins
 
               '''
