@@ -1,5 +1,8 @@
 pipeline{
    agent any
+   environment {
+         CC = 'clang'
+   }
    stages{
       stage('checkout'){
          steps{
@@ -28,5 +31,22 @@ pipeline{
               }
            }
       }
+      stage('ssh deploy'){
+         steps{
+            script{
+                 def remote = [:]
+                 remote.name = 'vm104'
+                 remote.host = 'vm104'
+                 remote.user = 'root'
+                 remote.password = '111111'
+                 remote.allowAnyHosts = true
+                 sshCommand remote: remote, command: "if [ ! -d '/opt/app/spring-boot-jenkins2' ]; then mkdir -p /opt/app/spring-boot-jenkins2;fi"
+                 sshPut remote: remote, from: '/opt/app/spring-boot-jenkins/*', into: '/opt/app/spring-boot-jenkins'
+                 sshCommand remote: remote, command: "sh /opt/app/spring-boot-jenkins/start.sh"
+            }
+         }
+      }
    }
+
+
 }
