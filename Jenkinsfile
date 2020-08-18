@@ -19,7 +19,7 @@ pipeline{
            steps{
               script{
                   sh '''
-                    rm -rf /opt/app/spring-boot-jenkins/*
+                    rm -rf /opt/app/spring-boot-jenkins/*.jar
                     cp ${WORKSPACE}/target/*.jar /opt/app/spring-boot-jenkins
                     pid=`ps -ef | grep java | grep spring-boot-jenkins | grep -v "grep" | awk '{print $2}'`
                     if [ "$pid" != "" ]
