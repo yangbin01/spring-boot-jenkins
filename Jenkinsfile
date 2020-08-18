@@ -22,6 +22,7 @@ pipeline{
                     rm -rf /opt/app/spring-boot-jenkins/*.jar
                     cp ${WORKSPACE}/target/*.jar /opt/app/spring-boot-jenkins
                     cd /opt/app/spring-boot-jenkins
+                    export BUILD_ID=dontKillMe
                     ./start.sh
                   '''
               }
