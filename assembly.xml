@@ -1,0 +1,29 @@
+<assembly>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>bin</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>*.sh</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>/</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>Dockerfile</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>
