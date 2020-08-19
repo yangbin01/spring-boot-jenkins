@@ -17,4 +17,4 @@ if [ -n "${existsContainer}" ]; then
   docker rm -f ${existsContainer}
 fi
 
-docker run --name ${PORJECT_NAME} -d -p 8091:8090 ${PORJECT_NAME}
+docker run --name ${PORJECT_NAME} -d -p 8090:8090 ${PORJECT_NAME}
