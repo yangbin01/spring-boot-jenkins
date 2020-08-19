@@ -35,7 +35,7 @@ pipeline{
       stage('ssh deploy'){
          steps{
             script{
-                 for(host in $sshHosts){
+                 for(host in "$sshHosts".split(","){
                      def remote = [:]
                      remote.name = host
                      remote.host = host
