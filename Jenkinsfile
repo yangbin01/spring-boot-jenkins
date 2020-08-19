@@ -6,8 +6,7 @@ pipeline{
    stages{
       stage('checkout'){
          steps{
-            echo "${name}"
-            echo "${host}"
+            echo "${sshHosts}"
             script{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/yangbin01/spring-boot-jenkins.git']]])
             }
