@@ -23,8 +23,7 @@ pipeline{
          steps{
             script{
                 sh "tar -zxvf target/spring-boot-jenkins-distribution.tar.gz -C /opt/soft"
-                sh "cd /opt/soft/spring-boot-jenkins"
-                sh "./docker.sh spring-boot-jenkins"
+                sh "sh /opt/soft/spring-boot-jenkins/docker.sh spring-boot-jenkins"
             }
          }
       }
