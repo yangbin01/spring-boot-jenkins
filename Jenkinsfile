@@ -23,12 +23,7 @@ pipeline{
          steps{
             script{
                  for(host in "$sshHosts".split(",")){
-                     def remote = [:]
-                     remote.name = host
-                     remote.host = host
-                     remote.user = "root"
-                     remote.password = "111111"
-                     remote.allowAnyHosts = true
+                     remote = getRemote(host)
                      sshCommand remote: remote, command: "if [ ! -d '/opt/app/spring-boot-jenkins' ]; then mkdir -p /opt/app/spring-boot-jenkins;fi"
                      sshPut remote: remote, from: 'target/spring-boot-jenkins-0.0.1-SNAPSHOT.jar', into: '/opt/app/spring-boot-jenkins',override: true
                      sshCommand remote: remote, command: "sh /opt/app/spring-boot-jenkins/start.sh"
@@ -37,4 +32,14 @@ pipeline{
          }
       }
    }
+}
+
+def getRemote(host){
+    def remote = [:]
+     remote.name = host
+     remote.host = host
+     remote.user = "root"
+     remote.password = "111111"
+     remote.allowAnyHosts = true
+     return remote
 }
