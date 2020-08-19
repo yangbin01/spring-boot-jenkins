@@ -19,19 +19,6 @@ pipeline{
             }
          }
       }
-      stage('deploy'){
-           steps{
-              script{
-                  sh '''
-                    rm -rf /opt/app/spring-boot-jenkins/*.jar
-                    cp ${WORKSPACE}/target/*.jar /opt/app/spring-boot-jenkins
-                    cd /opt/app/spring-boot-jenkins
-                    export BUILD_ID=dontKillMe
-                    ./start.sh
-                  '''
-              }
-           }
-      }
       stage('ssh deploy'){
          steps{
             script{
@@ -43,7 +30,7 @@ pipeline{
                      remote.password = "111111"
                      remote.allowAnyHosts = true
                      sshCommand remote: remote, command: "if [ ! -d '/opt/app/spring-boot-jenkins' ]; then mkdir -p /opt/app/spring-boot-jenkins;fi"
-                     sshPut remote: remote, from: 'target/*.jar', into: '/opt/app/spring-boot-jenkins',override: true
+                     sshPut remote: remote, from: 'target/spring-boot-jenkins-0.0.1-SNAPSHOT.jar', into: '/opt/app/spring-boot-jenkins',override: true
                      sshCommand remote: remote, command: "sh /opt/app/spring-boot-jenkins/start.sh"
                  }
             }
