@@ -6,6 +6,8 @@ pipeline{
    stages{
       stage('checkout'){
          steps{
+            echo "${name}"
+            echo "${host}"
             script{
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/yangbin01/spring-boot-jenkins.git']]])
             }
@@ -35,10 +37,10 @@ pipeline{
          steps{
             script{
                  def remote = [:]
-                 remote.name = '${params.name}'
-                 remote.host = '${params.host}'
-                 remote.user = 'root'
-                 remote.password = '111111'
+                 remote.name = "${name}"
+                 remote.host = "${host}"
+                 remote.user = "root"
+                 remote.password = "111111"
                  remote.allowAnyHosts = true
                  sshCommand remote: remote, command: "if [ ! -d '/opt/app/spring-boot-jenkins2' ]; then mkdir -p /opt/app/spring-boot-jenkins2;fi"
                  sshPut remote: remote, from: '/opt/app/spring-boot-jenkins', into: '/opt/app',override: true
