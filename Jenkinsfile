@@ -35,7 +35,7 @@ pipeline{
 }
 
 def getRemote(host){
-    def remote = [:]
+     def remote = [:]
      remote.name = host
      remote.host = host
      remote.user = "root"
