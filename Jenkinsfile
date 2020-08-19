@@ -22,7 +22,7 @@ pipeline{
       stage('创建docker镜像'){
          steps{
             script{
-                sh "tar -zxvf spring-boot-jenkins.tar.gz -C /opt/soft"
+                sh "tar -zxvf spring-boot-jenkins-distribution.tar.gz -C /opt/soft"
                 sh "cd /opt/soft/spring-boot-jenkins"
                 sh "./docker.sh spring-boot-jenkins"
             }
