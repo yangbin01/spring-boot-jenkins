@@ -35,8 +35,8 @@ pipeline{
          steps{
             script{
                  def remote = [:]
-                 remote.name = 'vm104'
-                 remote.host = 'vm104'
+                 remote.name = '${name}'
+                 remote.host = '${host}'
                  remote.user = 'root'
                  remote.password = '111111'
                  remote.allowAnyHosts = true
@@ -47,6 +47,4 @@ pipeline{
          }
       }
    }
-
-
 }
